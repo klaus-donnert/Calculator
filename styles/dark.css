@@ -10,6 +10,7 @@
 
 ::placeholder {
   color: rgb(221, 221, 221);
+  text-align: right;
 }
 
 .wrapper {
@@ -23,31 +24,70 @@
   transition: 0.8s all;
 }
 
-h1 {
-  margin-bottom: 1.5%;
-  color: #fff;
-  font-weight: normal;
-}
-
 .container {
-  width: 350px;
+  width: 320px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
+  gap: 4px;
 }
 
-.header-container {
+.result-row {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.result-row input[type="text"] {
+  width: 320px;
+  text-align: right;
+  padding: 25px 20px;
+  font-size: 1.3em;
+  background: linear-gradient(145deg, #232826, #2a2e2d);
+  border-radius: 12px;
+  box-shadow: 
+    inset 2px 2px 5px rgba(0, 0, 0, 0.7),
+    inset -2px -2px 5px rgba(95, 95, 95, 0.15);
+  margin-left: 0;
+  margin-bottom: 10px;
+}
+
+.button-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 80%;
+  gap: 4px;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin-bottom: 4px;
+
 }
 
-.top-buttons {
-  display: flex;
-  align-items: center;
-
+input[type="button"] {
+  width: 75px;
+  height: 75px;
+  padding: 0;
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #2f3532, #383e3d);
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  box-shadow: 
+    5px 5px 10px rgba(0, 0, 0, 0.5),
+    -2px -2px 5px rgba(95, 95, 95, 0.15),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.2),
+    inset -1px -1px 1px rgba(0, 0, 0, 0.7);
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s;
 }
 
 input {
@@ -79,20 +119,23 @@ input[type="text"] {
 }
 
 input[type="button"]:hover {
-  background-color: rgb(101, 101, 101);
-  color: #fff;
-  transform: translateY(2px);
-  box-shadow: 0 2px 0 rgb(60, 60, 60), 0 3px 3px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(145deg, #383e3d, #2f3532);
+  box-shadow: 
+    4px 4px 8px rgba(0, 0, 0, 0.5),
+    -2px -2px 5px rgba(95, 95, 95, 0.15),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.2),
+    inset -1px -1px 1px rgba(0, 0, 0, 0.7);
+  transform: translateY(1px);
 }
 
 input[type="button"]:active {
-  transform: translateY(4px);
-  box-shadow: 0 0 0 rgb(60, 60, 60), 0 1px 1px rgba(0, 0, 0, 0.2);
-}
-
-#clear-button {
-  color: #fff;
-  background-color: rgb(255, 42, 42);
+  background: linear-gradient(145deg, #232826, #2a2e2d);
+  box-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.5),
+    -1px -1px 3px rgba(95, 95, 95, 0.1),
+    inset 2px 2px 3px rgba(0, 0, 0, 0.6),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.1);
+  transform: translateY(3px);
 }
 
 a {
@@ -100,11 +143,15 @@ a {
   color: #fff;
 }
 
-#github-icon {
-  margin-right: 10px;
+/* Add this if you want all buttons in the first row to match other buttons */
+.first-row input[type="button"] {
+  background-color: rgb(47, 51, 50);
+  color: rgb(255, 255, 255);
 }
 
-.theme-button {
-  all: unset;
-  cursor: pointer;
+.first-row input[type="button"]:hover {
+  background-color: rgb(101, 101, 101);
+  color: #fff;
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgb(60, 60, 60), 0 3px 3px rgba(0, 0, 0, 0.3);
 }
