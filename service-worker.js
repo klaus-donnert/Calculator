@@ -4,9 +4,11 @@ const FILES_TO_CACHE = [
   '/',
   '/index.html',
   '/scripts/script.js',
-  '/manifest.webmanifest',
-  '/icon-192.png',
-  '/icon-512.png'
+  '/styles/dark.css',
+  '/assets/favicon-32x32.png',
+  '/assets/android-chrome-192x192.png',
+  '/assets/android-chrome-512x512.png',
+  '/manifest.webmanifest'
 ];
 
 // Install: Cache files when the service worker is installed

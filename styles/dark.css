@@ -105,14 +105,6 @@ input {
   transition: all 0.1s;
 }
 
-.first-row,
-.second-row,
-.third-row,
-.fourth-row,
-.fifth-row {
-  margin-bottom: 4px;
-}
-
 input[type="text"] {
   background-color: rgb(47, 51, 50);
   width: 222.5px;
@@ -141,17 +133,4 @@ input[type="button"]:active {
 a {
   text-decoration: none;
   color: #fff;
-}
-
-/* Add this if you want all buttons in the first row to match other buttons */
-.first-row input[type="button"] {
-  background-color: rgb(47, 51, 50);
-  color: rgb(255, 255, 255);
-}
-
-.first-row input[type="button"]:hover {
-  background-color: rgb(101, 101, 101);
-  color: #fff;
-  transform: translateY(2px);
-  box-shadow: 0 2px 0 rgb(60, 60, 60), 0 3px 3px rgba(0, 0, 0, 0.3);
 }
