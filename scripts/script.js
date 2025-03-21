@@ -121,7 +121,7 @@ function keyboardInputHandler(e) {
     // Decimal
     case ".":
     res.value += e.key;
-      
+    break;  
     // Enter for calculation
     case "Enter":
       calculate(result.value);
@@ -160,8 +160,13 @@ function clearEntry() {
     
     res.value = displayValue;
   } else {
-    // Otherwise just remove the last character
-    res.value = displayValue.slice(0, -1);
+    // at this point the value is a number and not an operator
+    // remove the last set of digits
+    // by removing last digit until a space is found or the value is empty
+    while (displayValue.length > 0 && displayValue[displayValue.length - 1] !== ' ') {
+      displayValue = displayValue.slice(0, -1);
+    }
+    res.value = displayValue;
   }
 }
 
