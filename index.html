@@ -3,12 +3,33 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+  <base href="/calculator/">
+
   <title>Calculator</title>
   <meta name="description" content="Simple Calculator in Dark Mode." />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Use relative paths for all resources -->
+  <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="styles/dark.css" />
+  <link rel="stylesheet" href="styles/dark.css">
+  
+  <!-- Service Worker Registration -->
+  <script>
+    // Register in both development and production
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./service-worker.js')
+        .then(function(registration) {
+          console.log('ServiceWorker registration successful');
+        })
+        .catch(function(error) {
+          console.log('ServiceWorker registration failed: ', error);
+        });
+      });
+    }
+  </script>
 </head>
 
 <body>
@@ -51,8 +72,7 @@
       </div>
     </div>
   </div>
-  <script src="scripts/script.js">
-  </script>
+  <script src="scripts/script.js"></script>
 </body>
 
 </html>

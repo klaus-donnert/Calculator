@@ -1,48 +1,56 @@
 // service-worker.js
-const CACHE_NAME = 'calc-pwa-v1';
+const CACHE_NAME = 'calc-pwa-v2';
 const FILES_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/scripts/script.js',
-  '/styles/dark.css',
-  '/assets/favicon-32x32.png',
-  '/assets/android-chrome-192x192.png',
-  '/assets/android-chrome-512x512.png',
-  '/manifest.webmanifest'
+  '/calculator/',
+  '/calculator/index.html',
+  '/calculator/scripts/script.js',
+  '/calculator/styles/dark.css',
+  '/calculator/assets/favicon-32x32.png',
+  '/calculator/assets/android-chrome-192x192.png',
+  '/calculator/assets/android-chrome-512x512.png',
+  '/calculator/manifest.webmanifest'
 ];
 
-// Install: Cache files when the service worker is installed
-self.addEventListener('install', (event) => {
+self.addEventListener('install', function(event) {
+  console.log('Service Worker installing...');
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
+    caches.open(CACHE_NAME).then(function(cache) {
+      console.log('Service Worker caching files...');
       return cache.addAll(FILES_TO_CACHE);
-    }).then(() => self.skipWaiting()) // Activate immediately after install
+    }).then(function() {
+      console.log('Service Worker installation complete');
+      return self.skipWaiting();
+    })
   );
 });
 
-// Activate: Clean up old caches and take control
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', function(event) {
+  console.log('Service Worker activating...');
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
+    caches.keys().then(function(cacheNames) {
       return Promise.all(
-        cacheNames.filter((name) => name !== CACHE_NAME)
-          .map((name) => caches.delete(name))
+        cacheNames.filter(function(name) {
+          return name !== CACHE_NAME;
+        }).map(function(name) {
+          console.log('Removing old cache:', name);
+          return caches.delete(name);
+        })
       );
-    }).then(() => self.clients.claim()) // Take control of pages immediately
+    }).then(function() {
+      console.log('Service Worker is now active');
+      return self.clients.claim();
+    })
   );
 });
 
-// Fetch: Prefer cache, fallback to network only if not cached
-self.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      // Return cached response if available, even if online
+    caches.match(event.request).then(function(cachedResponse) {
       if (cachedResponse) {
         return cachedResponse;
       }
-      // Fallback to network if not in cache (won't happen for FILES_TO_CACHE)
-      return fetch(event.request).catch(() => {
-        // If network fails (e.g., offline and no cache), return a fallback
+      return fetch(event.request).catch(function() {
+        console.log('Offline: Failed to fetch', event.request.url);
         return new Response('Offline and no cached version available', {
           status: 503,
           statusText: 'Service Unavailable'
