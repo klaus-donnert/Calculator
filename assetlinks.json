@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "us.donnert.calculator",
+        "sha256_cert_fingerprints": ["0E:2B:4D:F7:81:DD:10:20:6E:7F:2D:9E:31:37:BC:36:12:CA:02:80:E9:CC:76:F6:BE:25:9E:4F:1A:CE:BE:07"]
+      }
+    }]

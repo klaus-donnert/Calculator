@@ -6,7 +6,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   -webkit-appearance: none;
   appearance: none;
 }
